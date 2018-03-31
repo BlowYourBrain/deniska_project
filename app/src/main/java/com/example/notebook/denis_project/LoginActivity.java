@@ -66,12 +66,16 @@ public class LoginActivity extends AppCompatActivity {
 
         private void returnData(String url) {
             if (url.startsWith(rediret_uri)) {
-                Log.d("redirect_url", url);
-                Intent intent = new Intent();
-                String[] parts = url.split("=");
-                intent.putExtra(ACCESS_TOKEN, parts[1]);
-                setResult(RESULT_OK, intent);
-                finish();
+                try {
+                    Log.d("redirect_url", url);
+                    Intent intent = new Intent();
+                    String[] parts = url.split("=");
+                    intent.putExtra(ACCESS_TOKEN, parts[1]);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }catch (Exception e){
+                    Log.d("error", e.getLocalizedMessage());
+                }
             }
         }
 
